@@ -1,0 +1,67 @@
+
+<app-header (click)="isExpanded = !isExpanded"></app-header>
+
+<mat-sidenav-container class="body-container" autosize>
+  <mat-sidenav #sidenav class="mat-sidenav" mode="side" opened="true" autosize>
+    <mat-nav-list>
+      <mat-list-item>
+        <mat-icon class="icon" mat-list-icon routerLink="/home" (click)="isExpanded = !isExpanded">dashboard</mat-icon>
+        <span class="full-width" *ngIf="isExpanded || isShowing"style="padding-left:30px;padding-right:30px;" routerLink="/home">Dashboard</span>
+      </mat-list-item>
+      <mat-list-item (click)="showSubmenu = !showSubmenu" class="parent">
+        <span class="full-width" *ngIf="isExpanded || isShowing"style="padding-left:30px;padding-right:30px;">Scheduling</span>
+        <mat-icon class="icon" mat-list-icon (click)="isExpanded = !isExpanded">schedule</mat-icon>
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenu}" *ngIf="isExpanded || isShowing" style="padding-right:6px;">expand_more</mat-icon>
+      </mat-list-item>
+      <div class="submenu" [ngClass]="{'expanded' : showSubmenu}" *ngIf="isShowing || isExpanded">
+        <a mat-list-item routerLink="/calendar"><mat-icon mat-list-icon>calendar_today</mat-icon>Calendar</a>
+				<a mat-list-item routerLink="/schedule"><mat-icon mat-list-icon>schedule_send</mat-icon>Schedule</a>
+        <!-- <a mat-list-item routerLink="/corner-and-capstone"><mat-icon mat-list-icon>list_alt</mat-icon>Corner & Captsone</a> -->
+				<a mat-list-item routerLink="/trainingmatrix"><mat-icon mat-list-icon>view_array</mat-icon>Training matrix</a>
+			</div>
+      <mat-list-item (click)="showSubmenuReg = !showSubmenuReg" class="parent">
+        <span class="full-width" *ngIf="isExpanded || isShowing"style="padding-left:30px;padding-right:30px;">Register</span>
+        <mat-icon class="icon" mat-list-icon (click)="isExpanded = !isExpanded">scatter_plot</mat-icon>
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenuReg}" *ngIf="isExpanded || isShowing" style="padding-right:6px;">expand_more</mat-icon>
+      </mat-list-item>
+      <div class="submenu" [ngClass]="{'expanded' : showSubmenuReg}" *ngIf="isShowing || isExpanded">
+        <a mat-list-item routerLink="/register-mapping"><mat-icon mat-list-icon>streetview</mat-icon>Training & Promotion</a>
+        <a mat-list-item routerLink="/requirements"><mat-icon mat-list-icon>content_copy</mat-icon>Requirement</a>
+				<a mat-list-item routerLink="/requirement-type-list"><mat-icon mat-list-icon>assignment</mat-icon>Requirement Type</a>
+        <a mat-list-item routerLink="/requirements-mapping"><mat-icon mat-list-icon>import_contacts</mat-icon>Requirement mapping</a>
+        <a mat-list-item routerLink="/position"><mat-icon mat-list-icon>supervised_user_circle</mat-icon>Position</a>
+        <a mat-list-item routerLink="/vessel"><mat-icon mat-list-icon>directions_boat</mat-icon>Vessel</a>
+        <a mat-list-item routerLink="/corner-and-capstone-register"><mat-icon mat-list-icon>directions_boat</mat-icon>Corner & Capstone</a>
+      </div>
+      <mat-list-item (click)="showSubmenuReports = !showSubmenuReports" class="parent">
+        <span class="full-width" *ngIf="isExpanded || isShowing"style="padding-left:30px;padding-right:30px;">Reports</span>
+        <mat-icon class="icon" mat-list-icon (click)="isExpanded = !isExpanded">reports</mat-icon>
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenuReports}" *ngIf="isExpanded || isShowing" style="padding-right:6px;">expand_more</mat-icon>
+      </mat-list-item>
+      <div class="submenu" [ngClass]="{'expanded' : showSubmenuReports}" *ngIf="isShowing || isExpanded">
+				<a mat-list-item href="...">List of Requirements</a>
+				<a mat-list-item href="...">List of Position</a>
+        <a mat-list-item href="...">List of Vessel</a>
+			</div>
+      <mat-list-item (click)="showSubmenuMaintenance = !showSubmenuMaintenance" class="parent">
+        <span class="full-width" *ngIf="isExpanded || isShowing"style="padding-left:30px;padding-right:30px;">Maintenance</span>
+        <mat-icon class="icon" mat-list-icon (click)="isExpanded = !isExpanded">settings</mat-icon>
+        <mat-icon class="menu-button" [ngClass]="{'rotated' : showSubmenuMaintenance}" *ngIf="isExpanded || isShowing" style="padding-right:6px;">expand_more</mat-icon>
+      </mat-list-item>
+      <div class="submenu" [ngClass]="{'expanded' : showSubmenuMaintenance}" *ngIf="isShowing || isExpanded">
+				<a mat-list-item href="...">Add Users</a>
+				<a mat-list-item href="...">Theme</a>
+        <a mat-list-item href="...">Settings</a>
+			</div>
+    </mat-nav-list>
+  </mat-sidenav>
+  
+  <div class="body-container-content">
+    <mat-card class="main-content">
+      <mat-card-content class="body-child">
+        <router-outlet></router-outlet>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</mat-sidenav-container>
+  

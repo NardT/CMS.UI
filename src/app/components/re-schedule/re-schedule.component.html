@@ -1,0 +1,23 @@
+<mat-toolbar> 
+    <h1>Reschedule</h1>
+</mat-toolbar>
+<mat-divider></mat-divider>
+<br>
+<div mat-dialog-content>
+    <mat-form-field appearance="outline">
+            <mat-label>Select Date</mat-label>
+            <input matInput [matDatepicker]="pickerDate">
+            <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+            <mat-datepicker #pickerDate></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline" class="Available">
+        <mat-label>Available Slots</mat-label>
+        <input type="number" step="1" matInput>
+    </mat-form-field>
+</div>
+<mat-divider class="divider"></mat-divider>
+<div mat-dialog-actions [align]="'end'">
+    <button mat-raised-button class="btnSave">Save</button>
+    <button mat-raised-button class="btnCancel" mat-dialog-close>Cancel</button>  
+</div>

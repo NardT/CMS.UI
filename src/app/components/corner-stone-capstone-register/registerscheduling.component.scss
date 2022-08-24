@@ -1,0 +1,62 @@
+.Title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 1px;
+    color: rgb(96, 92, 92);
+    font-size: 20px;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: auto;
+}
+
+.btnClose {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(96, 92, 92);
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.cbo-font {
+    font-size: 15px;
+}
+
+.btnSave {
+    width: 100%;
+    height: 50px;
+    background-color: #229954;
+    color:#fff;
+    border-radius: 40px;
+}
+
+.btnSave:hover {
+    background-color: #52BE80;
+}
+
+.No.Participants {
+    font-size: 20px;
+}
+
+.toggle {
+    margin-left: 17px;
+    position: absolute;
+    color:#010618;
+    font-weight: 70px;
+    float: left;
+}
+
+@media screen and (max-width:600px) {
+    .mat-form-field {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .btnSave {
+        width: 100%;
+        margin-left: 0;
+    }
+
+}

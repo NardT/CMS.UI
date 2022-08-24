@@ -1,0 +1,40 @@
+.Title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 1px;
+    color: rgb(96, 92, 92);
+    font-size: 20px;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    overflow: auto;
+}
+
+.btnClose {
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    color: rgb(96, 92, 92);
+}
+
+.mat-form-field {
+    width: 100%;
+    font-size: 15px;
+}
+
+.btnSave {
+    background-color: #229954;
+    color: #fff;
+    height: 50px;
+    width: 100%;
+    border-radius: 40px;
+}
+
+@media screen and (max-width:600px) {
+    .mat-form-field {
+        width: 100%;
+    }
+    
+    .btnSave {
+        width: 100%;
+    }
+}

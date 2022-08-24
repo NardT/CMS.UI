@@ -1,0 +1,56 @@
+<span class="btnClose" mat-dialog-close>&times;</span>
+<h1 class="Title">Register Mapping</h1>
+<mat-divider></mat-divider>
+<br>
+<div mat-dialog-content>
+    <form #form="ngForm" (ngSubmit)="AddRequirementMapping()">
+    <mat-form-field appearance="outline">
+        <mat-label>Position</mat-label>
+        <mat-select name="Position" (selectionChange)="ChangePosition($event.value)" placeholder="Choose Position" required>
+            <mat-option >-- select --</mat-option>
+            <mat-option [value]="pos.id"  *ngFor="let pos of positionList">
+                {{pos.positionName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Requirements</mat-label>
+        <mat-select name="Requirement" (selectionChange)="ChangeRequirement($event.value)" placeholder="Choose Requirements" required>
+            <mat-option >-- select --</mat-option>
+            <mat-option [value]="req.id" *ngFor="let req of requirements">
+                {{req.requirementName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Type</mat-label>
+        <mat-select name="RequirementType" (selectionChange)="ChangeRequirementType($event.value)" placeholder="Choose Requirements Type" required>
+            <mat-option >-- select --</mat-option>
+            <mat-option [value]="typ.id"  *ngFor="let typ of requirementtype">
+                {{typ.requirementTypeName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+     <mat-form-field appearance="outline">
+        <mat-label>Vessel Type</mat-label>
+        <mat-select name="Vessel" (selectionChange)="ChangeVessel($event.value)" placeholder="Choose Vessel" required>
+            <mat-option >-- select --</mat-option>
+            <mat-option [value]="ves.id"  *ngFor="let ves of vesselList">
+                {{ves.vesselName}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+        <mat-label>Validity Date</mat-label>
+        <input matInput name="Validity" [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker (change)="onDate($event)" ></mat-datepicker>
+    </mat-form-field>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <button mat-raised-button class="btnSave">{{actionBtn}}</button>    
+</form>
+</div>
+
+

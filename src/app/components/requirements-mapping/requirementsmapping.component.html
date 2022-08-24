@@ -1,0 +1,38 @@
+<ngx-spinner size="medium" color="#F18E16" type="ball-fussion" style="color:#fff;">LOADING</ngx-spinner>
+<br>
+<h1 class="Title">Requirement Mapping</h1>
+<mat-divider></mat-divider>
+<br>
+<mat-toolbar>
+    <mat-form-field appearance="outline">
+        <mat-label>Requirements</mat-label>
+        <mat-select>
+            <mat-option style="color:rgb(172, 167, 167)">clear</mat-option>
+            <mat-option value="level1">Sample 1</mat-option>
+            <mat-option value="level2">Sample 2</mat-option>
+            <mat-option value="level3">Sample 3</mat-option>
+            <mat-option value="level4">Sample 4</mat-option>
+            <mat-option value="level5">Sample 5</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button class="btnAssign" mat-raised-button routerLink="#">Assign</button>
+</mat-toolbar>
+<br>
+<div class="mat-elevation-z8">
+    <table [dataSource]="dataSource" mat-table matSort>
+        <ng-container matColumnDef="Requirement">
+            <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Requirement </th>
+            <td mat-cell *matCellDef="let element"> {{element.requirement}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="Processing Requirement">
+            <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Processing Requirement </th>
+            <td mat-cell *matCellDef="let element"> {{element.processingrequirement}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[3, 5, 10, 25, 100]" showFirstLastButtons aria-label="Select page of users"></mat-paginator>
+</div>
+<br>

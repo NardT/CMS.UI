@@ -1,0 +1,34 @@
+<span class="btnClose" mat-dialog-close>&times;</span>
+<h1 class="Title">Training</h1>
+<mat-divider></mat-divider>
+<br>
+<div mat-dialog-content>
+    <form [formGroup]="mappingForm">
+
+    <mat-form-field appearance="outline">
+        <mat-label class="font-label">Trainings</mat-label>
+        <mat-select class="cbo-font" autocomplete="off" formControlName="title" required>
+                <mat-option style="color:rgb(179, 172, 172)">-- select --</mat-option>
+                <mat-option [value]="cor.cornerandcapstone" *ngFor="let cor of cornerandcapstoneList">
+                    {{cor.cornerandcapstone}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label>Date</mat-label>
+        <input matInput [matDatepicker]="pickerDate" autocomplete="off" formControlName="date" [min]="minDate" required>
+        <mat-datepicker-toggle matSuffix [for]="pickerDate"></mat-datepicker-toggle>
+        <mat-datepicker #pickerDate></mat-datepicker>
+    </mat-form-field>
+    <br>
+   <mat-form-field appearance="outline" class="No.Participants" >
+        <mat-label>Maximum number of Partificante</mat-label>
+        <input type="number" step="1" autocomplete="off" formControlName="maxparticipants"  matInput required>
+    </mat-form-field>
+ </form>
+ <br>
+<button mat-raised-button class="btnSave" [disabled]="mappingForm.invalid" (click)="AddCornerCapstone()">Save</button>    
+
+
+

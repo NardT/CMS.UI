@@ -1,0 +1,31 @@
+<mat-toolbar>
+  <div class="icon-logo"><h1 class="Title">Competency Management System</h1></div>
+</mat-toolbar>
+<mat-grid-list [cols]="2">
+<mat-grid-tile class="divlogologin">
+<div class="logo"></div>
+</mat-grid-tile>
+<mat-grid-tile class="divlogin">
+<mat-card>
+    <h1>Welcome</h1>
+    <h2>Sign in your credentials</h2>
+      <mat-card-content>
+        <form [formGroup]="LoginForm">
+            <mat-form-field class="mat-field" appearance="outline">
+                <input matInput placeholder="Enter your username" name="username" formControlName="Email">
+                <mat-icon matPrefix class="my-icon">account_box</mat-icon>
+            </mat-form-field>
+            <mat-form-field class="mat-field"  appearance="outline">
+              <input matInput placeholder="Enter your password"  name="password" [type]="showPassword ? 'text' : 'password'" formControlName="Password">
+              <mat-icon matPrefix class="my-icon">lock</mat-icon>
+              <mat-icon matSuffix class="my-icon-password" (click)="togglePasswordVisibility()">visibility</mat-icon>
+            </mat-form-field>
+            <!-- <br>
+            <mat-checkbox class="Chkremember">Remember me?</mat-checkbox>
+            <a href="" class="forgot">Forgot Password?</a> -->
+          </form>
+      </mat-card-content>
+        <button mat-raised-button class="btnSubmit" (click)="SubmitCredentials()">Login</button>
+</mat-card>
+</mat-grid-tile>
+</mat-grid-list>

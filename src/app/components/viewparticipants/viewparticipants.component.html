@@ -1,0 +1,42 @@
+<ngx-spinner size="medium" color="#F18E16" type="ball-fussion" style="color:#fff;">LOADING</ngx-spinner>
+<mat-toolbar> 
+    <button class="btnBack"><mat-icon routerLink="/schedule" >arrow_back</mat-icon></button>
+    <h1>View Participants</h1>
+</mat-toolbar>
+ <mat-divider></mat-divider>
+<button mat-raised-button class="btnPassed">Passed</button>    
+ <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="select">
+        <th class="THheader" mat-header-cell *matHeaderCellDef>
+          <mat-checkbox (change)="$event ? toggleAllRows() : null"
+                        [checked]="selection.hasValue() && isAllSelected()"
+                        [indeterminate]="selection.hasValue() && !isAllSelected()"
+                        [aria-label]="checkboxLabel()">
+                        Select All
+          </mat-checkbox>
+        </th>
+        <td mat-cell *matCellDef="let row">
+          <mat-checkbox (click)="$event.stopPropagation()"
+                        (change)="$event ? selection.toggle(row) : null"
+                        [checked]="selection.isSelected(row)"
+                        [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </td>
+      </ng-container>
+        <ng-container matColumnDef="crew">
+            <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Crew </th>
+            <td mat-cell *matCellDef="let element"> {{element.Crew}} </td>
+          </ng-container>
+          <ng-container matColumnDef="status">
+            <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+            <td mat-cell *matCellDef="let row"> 
+              <button class="btnSchedule" (click)="openDialog()" mat-icon-button>Schedule</button> 
+            </td>
+          </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>        
+ </table>
+    <mat-paginator [pageSizeOptions]="[3, 5, 10, 25, 100]" showFirstLastButtons aria-label="Select page of users"></mat-paginator>
+  </div> 
+  <br><br><br><br>

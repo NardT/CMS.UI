@@ -1,0 +1,42 @@
+.mat-toolbar {
+    background-color: rgb(255, 255, 255);
+}
+
+.title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 1px;
+    color: rgb(96, 92, 92);
+    font-size: 20px;
+}
+
+.btnToggle {
+    margin-left: 15px;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    color:#fff;
+    width: 150px;
+    height: 40px;
+    background-color: #1E70EE;
+}
+
+.btnToggle:hover {
+    background-color: #3a85f5;
+    color: #fff;
+}
+
+.fullCalendar {
+    width: 100%;
+    background-color: rgba(248, 253, 248, 0.5) !important;
+    overflow-y: hidden;
+}
+
+.btnCreate {
+    margin-left: auto;
+    font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    color:#fff;
+    width: 120px;
+    height: 40px;
+    background-color: #1E70EE;
+    border-radius: 40px;
+}

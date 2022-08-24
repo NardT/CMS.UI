@@ -1,0 +1,13 @@
+<span class="btnClose" mat-dialog-close>&times;</span>
+<h1 class="Title">Requirement</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content class="form-body">
+    <br>
+    <form #form="ngForm" (ngSubmit)="AddRequirements()">
+    <mat-form-field appearance="outline">
+        <mat-label>Requirements</mat-label>
+        <input matInput type="text" name="requirement" [(ngModel)]="addRequirementRequest.requirementName" autocomplete="off" maxlength="50" minlength="3" required>
+    </mat-form-field>
+        <button mat-raised-button class="btnSave" type="submit">{{actionBtn}}</button>
+    </form>
+</div>
