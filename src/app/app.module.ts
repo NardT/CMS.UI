@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,11 +65,18 @@ import { Moment } from 'moment';
 import * as moment from 'moment';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { AuthService } from './shared/Authentication/auth.service';
+import { ConfigService } from './config-service.service';
+import { config } from 'rxjs';
+
 
 FullCalendarModule.registerPlugins([
   dayGridPlugin,
   interactionPlugin
 ]);
+
+export function initConfig(configSvc: ConfigService) {
+  return () => configSvc.loadConfig('./assets/config.json');
+}
 
 @NgModule({
   declarations: [
@@ -99,7 +106,13 @@ FullCalendarModule.registerPlugins([
   ],
   providers: [
     { provide:HTTP_INTERCEPTORS,useClass:AuthService,multi:true},
-    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } }
+    { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    { provide: APP_INITIALIZER, 
+      useFactory: initConfig,
+      deps: [ConfigService],
+      multi: true
+    },
+    ConfigService
   ],
   imports: [
     BrowserModule,

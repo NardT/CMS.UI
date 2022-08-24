@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  BaseURL: "https://localhost:5001/api/v1/",
+  positionEndPoint: "positions/",
+  vesselEndPoint: "vessels/",
+  requirementEndPoint: "requirements/",
+  requirementTypeEndPoint: "requirementtype/",
+  trainingEndPoint: "training/"
 };
 
 /*
