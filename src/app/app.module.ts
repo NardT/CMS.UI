@@ -53,7 +53,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {MatRadioModule} from '@angular/material/radio';
 import { RequirementMatrixComponent } from './components/requirement-matrix/requirement-matrix.component';
 import { RequirementsDialogComponent } from './components/requirements-dialog/requirements-dialog.component';
@@ -65,8 +65,9 @@ import { Moment } from 'moment';
 import * as moment from 'moment';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { AuthService } from './shared/Authentication/auth.service';
-import { ConfigService } from './config-service.service';
+import { ConfigService } from './config/config-service.service';
 import { config } from 'rxjs';
+import { Appconfig } from './config/app-config';
 
 
 FullCalendarModule.registerPlugins([
@@ -74,8 +75,10 @@ FullCalendarModule.registerPlugins([
   interactionPlugin
 ]);
 
-export function initConfig(configSvc: ConfigService) {
-  return () => configSvc.loadConfig('./assets/config.json');
+export function initializerFn(configservice: ConfigService) {
+  return () => {
+    return configservice.load();
+  };
 }
 
 @NgModule({
@@ -107,12 +110,16 @@ export function initConfig(configSvc: ConfigService) {
   providers: [
     { provide:HTTP_INTERCEPTORS,useClass:AuthService,multi:true},
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
+    {
+      provide: Appconfig,
+      deps: [HttpClient],
+      useExisting: ConfigService
+    },
     { provide: APP_INITIALIZER, 
-      useFactory: initConfig,
+      useFactory: initializerFn,
       deps: [ConfigService],
       multi: true
-    },
-    ConfigService
+    }
   ],
   imports: [
     BrowserModule,

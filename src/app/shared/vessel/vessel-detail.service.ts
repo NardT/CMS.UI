@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Vessel } from 'src/app/components/vesseltype/vesseltype.model';
-import { environment } from 'src/environments/environment';
+import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VesselDetailService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private cnfgsrvc: Appconfig,private http: HttpClient) {}
 
-  _BaseURL = environment.BaseURL;
-  _EndPoint = environment.vesselEndPoint;
+  _BaseURL = this.cnfgsrvc.BaseUrl;
+  _EndPoint = this.cnfgsrvc.vesselEndPoint;
 
 
   getAllVessel(): Observable<Vessel[]> {

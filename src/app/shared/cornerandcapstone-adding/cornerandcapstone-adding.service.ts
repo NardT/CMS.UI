@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Training } from 'src/app/components/cornerandcapstone-dialog/training.model';
-import { environment } from 'src/environments/environment';
+import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CornerandcapstoneAddingService {
 
-  _BaseURL = environment.BaseURL;
-  _EndPoint = environment.trainingEndPoint;
+  constructor(private cnfgsrvc: Appconfig,private http: HttpClient) {}
 
-  constructor(private http: HttpClient) {}
+  _BaseURL = this.cnfgsrvc.BaseUrl;
+  _EndPoint = this.cnfgsrvc.trainingEndPoint;
 
   getAllDetails(): Observable<Training[]> {
     return this.http.get<Training[]>(this._BaseURL + this._EndPoint)

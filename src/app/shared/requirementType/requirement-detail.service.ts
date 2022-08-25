@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RequirementType } from 'src/app/components/requirementstype/requirementType.model';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RequirementDetailService {
 
-  constructor(private http: HttpClient) {}
+  constructor(private cnfgsrvc: Appconfig,private http: HttpClient) {}
 
-  _BaseURL = environment.BaseURL;
-  _EndPoint = environment.requirementTypeEndPoint;
+  _BaseURL = this.cnfgsrvc.BaseUrl;
+  _EndPoint = this.cnfgsrvc.requirementTypeEndPoint;
 
   getAllRequirementType(): Observable<RequirementType[]> {
     return this.http.get<RequirementType[]>(this._BaseURL + this._EndPoint);

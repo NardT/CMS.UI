@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpInterceptor } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ShareConfig } from 'rxjs';
 import { Position } from 'src/app/components/positiontype/positiontype.model';
-import { environment } from 'src/environments/environment';
-import { ConfigService } from 'src/app/config-service.service';
+import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PositionDetailService {
 
-  constructor(private cnfgsrvc: ConfigService,private http: HttpClient) {}
+  constructor(private cnfgsrvc: Appconfig ,private http: HttpClient) {}
 
-  _BaseURL = environment.BaseURL;
-  _endPoint = environment.positionEndPoint;
+  _BaseURL = this.cnfgsrvc.BaseUrl;
+  _endPoint = this.cnfgsrvc.positionEndPoint;
 
   getAllPosition(): Observable<Position[]> {
     return this.http.get<Position[]>(this._BaseURL + this._endPoint);
