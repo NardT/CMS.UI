@@ -8,7 +8,7 @@
         <mat-label>Position</mat-label>
         <mat-select name="Position" (selectionChange)="ChangePosition($event.value)" placeholder="Choose Position" required>
             <mat-option >-- select --</mat-option>
-            <mat-option [value]="pos.id"  *ngFor="let pos of positionList">
+            <mat-option [value]="pos.id"   *ngFor="let pos of positionList">
                 {{pos.positionName}}
             </mat-option>
         </mat-select>
@@ -36,7 +36,7 @@
         <mat-select name="Vessel" (selectionChange)="ChangeVessel($event.value)" placeholder="Choose Vessel" required>
             <mat-option >-- select --</mat-option>
             <mat-option [value]="ves.id"  *ngFor="let ves of vesselList">
-                {{ves.vesselName}}
+                {{ves.vesselTypeName}}
             </mat-option>
         </mat-select>
     </mat-form-field>
@@ -44,7 +44,7 @@
         <mat-label>Validity Date</mat-label>
         <input matInput name="Validity" [matDatepicker]="picker" required>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker (change)="onDate($event)" ></mat-datepicker>
+        <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <br>
     <mat-divider></mat-divider>

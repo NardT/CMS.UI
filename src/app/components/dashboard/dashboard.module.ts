@@ -18,10 +18,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { HomeComponent } from '../dashboard-home/home.component';
 import { RequirementComponent} from '../requirements-type/requirement.component';
 import { VesselComponent } from '../vessel/vessel.component';
-import { VesseltypeComponent } from '../vesseltype/vesseltype.component';
+import { VesseltypeComponent } from '../vesselDialog/vesselDialog.component';
 import { DialogComponent } from '../create-mapping/dialog.component';
 import { PositionComponent } from '../position/position.component';
-import { PositiontypeComponent } from '../positiontype/positiontype.component';
+import { PositiontypeComponent } from '../positionDialog/positionDialog.component';
 import { RegisterschedulingComponent } from '../corner-stone-capstone-register/registerscheduling.component';
 import { RequirementstypeComponent } from '../requirementstype/requirementstype.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -48,6 +48,9 @@ import { MatMomentDateModule } from "@angular/material-moment-adapter";
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { AuthService } from 'src/app/shared/Authentication/auth.service';
+import { VesselTypeListComponent } from '../vesselType-list/vessel-type-list/vessel-type-list.component';
+import { AuthGuard } from 'src/app/shared/Authentication/auth.guard';
+
 
 
 const routes:Routes=[
@@ -57,7 +60,7 @@ const routes:Routes=[
     children: [
       {
         path: "calendar",
-        component: CalendarComponent
+        component: CalendarComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -67,7 +70,7 @@ const routes:Routes=[
     children: [
       {
         path: "home",
-        component: HomeComponent
+        component: HomeComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -77,7 +80,7 @@ const routes:Routes=[
     children: [
       {
         path: "trainingandpromotions",
-        component: RequirementsComponent
+        component: RequirementsComponent,canActivate:[AuthGuard]
       },
       {
         path: "dialog",
@@ -91,11 +94,11 @@ const routes:Routes=[
     children: [
       {
         path: "schedule",
-        component: SchedulingComponent
+        component: SchedulingComponent,canActivate:[AuthGuard]
       },
       {
         path: 'ViewParticipants',
-        component: ViewparticipantsComponent
+        component: ViewparticipantsComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -105,7 +108,7 @@ const routes:Routes=[
     children: [
       {
         path: "reports",
-        component: ReportsComponent
+        component: ReportsComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -115,11 +118,11 @@ const routes:Routes=[
     children: [
       {
         path: "requirementtype",
-        component: RequirementComponent
+        component: RequirementComponent,canActivate:[AuthGuard]
       },
       {
         path: 'requirementsType',
-        component: RequirementstypeComponent
+        component: RequirementstypeComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -129,11 +132,11 @@ const routes:Routes=[
     children: [
       {
         path: "position",
-        component: PositionComponent
+        component: PositionComponent,canActivate:[AuthGuard]
       },
       {
         path: 'positiontype',
-        component: PositiontypeComponent
+        component: PositiontypeComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -143,11 +146,11 @@ const routes:Routes=[
     children: [
       {
         path: "vessel",
-        component: VesselComponent
+        component: VesselComponent,canActivate:[AuthGuard]
       },
       {
         path: 'vesseltype',
-        component: VesseltypeComponent
+        component: VesseltypeComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -157,7 +160,7 @@ const routes:Routes=[
     children: [
       {
         path: "requirements-mapping",
-        component: RequirementsmappingComponent
+        component: RequirementsmappingComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -168,7 +171,7 @@ const routes:Routes=[
       {
         path: "corner-and-capstone",
         // component: CornerCapstoneListComponent
-       component: RegisterschedulingComponent
+       component: RegisterschedulingComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -178,7 +181,7 @@ const routes:Routes=[
     children: [
       {
         path: "corner-and-capstone-register",
-        component: CornerCapstoneListComponent
+        component: CornerCapstoneListComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -188,7 +191,7 @@ const routes:Routes=[
     children: [
       {
         path: "requirement-type-list",
-        component: RequirementComponent
+        component: RequirementComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -198,7 +201,7 @@ const routes:Routes=[
     children: [
       {
         path: "register-mapping",
-        component: RequirementsComponent
+        component: RequirementsComponent,canActivate:[AuthGuard]
       }
     ]
   },
@@ -208,7 +211,17 @@ const routes:Routes=[
     children: [
       {
         path: "requirements",
-        component: RequirementMatrixComponent
+        component: RequirementMatrixComponent,canActivate:[AuthGuard]
+      }
+    ]
+  },
+  {
+    path: "",
+    component: DashboardComponent,
+    children: [
+      {
+        path: "vesselType",
+        component: VesselTypeListComponent,canActivate:[AuthGuard]
       }
     ]
   }

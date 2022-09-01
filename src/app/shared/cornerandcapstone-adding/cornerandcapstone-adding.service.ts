@@ -19,6 +19,7 @@ export class CornerandcapstoneAddingService {
   }
 
   postDetails(addTrainingRequest : Training): Observable<Training> {
+    console.log(addTrainingRequest);
     return this.http.post<Training>(this._BaseURL + this._EndPoint, addTrainingRequest)
   }
 

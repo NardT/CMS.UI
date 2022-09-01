@@ -13,29 +13,29 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="dataSource" matSort>
 
-    <ng-container matColumnDef="RequirementMappingPositionName">
+    <ng-container matColumnDef="positionName">
       <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
-      <td mat-cell *matCellDef="let row"> {{row.RequirementMappingPositionName}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.positionName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="RequirementMappingRequirement">
+    <ng-container matColumnDef="requirementName">
       <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Requirement </th>
-      <td mat-cell *matCellDef="let row"> {{row.RequirementMappingRequirement}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.requirementName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="RequirementMappingRequirementType">
+    <ng-container matColumnDef="requirementTypeName">
       <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Type </th>
-      <td mat-cell *matCellDef="let row"> {{row.RequirementMappingRequirementType}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.requirementTypeName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="RequirementMappingVesselName">
+    <ng-container matColumnDef="vesselTypeName">
       <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Vessel </th>
-      <td mat-cell *matCellDef="let row"> {{row.RequirementMappingVesselName}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.vesselTypeName}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="RequirementMappingValidityDate">
+    <ng-container matColumnDef="validityDate">
       <th class="THheader" mat-header-cell *matHeaderCellDef> Validity </th>
-      <td mat-cell *matCellDef="let row"> {{row.RequirementMappingValidityDate | date}} </td>
+      <td mat-cell *matCellDef="let row"> {{row.validityDate | date}} </td>
     </ng-container>
 
     <ng-container matColumnDef="action">
@@ -50,5 +50,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <br>
-  <mat-paginator [pageSizeOptions]="[3, 5, 10, 25, 100]" showFirstLastButtons aria-label="Select page of users"></mat-paginator>
+  <mat-paginator [length]="totalPage" [pageSizeOptions]="[pageSize]" showFirstLastButtons aria-label="Select page of users"></mat-paginator>
 </div>

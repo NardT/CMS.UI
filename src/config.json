@@ -3,8 +3,12 @@
     "TokenUrl": "https://localhost:5001/api/tokens/",
     "RefreshToken": "https://localhost:5001/api/tokens/refresh/",
     "positionEndPoint": "positions/",
-    "vesselEndPoint": "vessels/",
     "requirementEndPoint": "requirements/",
     "requirementTypeEndPoint": "requirementtype/",
-    "trainingEndPoint": "training/"
+    "trainingEndPoint": "training/",
+    "vesselEndPoint": "vessels/",
+    "vesselTypeEndPoint": "vesseltype/",
+    "requirementMappingEndPoint": "requirementmapping/",
+    "homeEndPoint": "/home",
+    "search": "search/"
 }

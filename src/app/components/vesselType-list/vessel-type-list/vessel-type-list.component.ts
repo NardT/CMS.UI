@@ -5,19 +5,20 @@ import { MatDialog} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { VesseltypeComponent } from '../vesselDialog/vesselDialog.component';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { VesselDetailService } from 'src/app/shared/vessel/vessel-detail.service';
-import { Vessel } from '../vesselDialog/vesselDialog.model';
+import { VesseltypeDetailService } from 'src/app/shared/vesseltype/vesseltype-detail.service';
+import { VesselTypes } from '../../vesselTypeDialog/vesselType.Model';
+import { VesselTypeDialogComponent } from '../../vesselTypeDialog/vessel-type-dialog.component';
+
 
 @Component({
-  selector: 'app-vessel',
-  templateUrl: './vessel.component.html',
-  styleUrls: ['./vessel.component.scss']
+  selector: 'app-vessel-type-list',
+  templateUrl: './vessel-type-list.component.html',
+  styleUrls: ['./vessel-type-list.component.scss']
 })
-export class VesselComponent implements OnInit {
+export class VesselTypeListComponent implements OnInit {
 
-  constructor(public dialog: MatDialog,private tostr : ToastrService,private spinner: NgxSpinnerService,public service: VesselDetailService) {
+  constructor(public dialog: MatDialog,private tostr : ToastrService,private spinner: NgxSpinnerService,public service: VesseltypeDetailService) {
     this.spinner.show();
 
     setTimeout(() => {
@@ -26,15 +27,13 @@ export class VesselComponent implements OnInit {
   }
 
   mobileMedia1: any = window.matchMedia("(max-width:600px)")
-  displayedColumns: string[] = ['vesselName','Action'];
-  dataSource = new MatTableDataSource<Vessel>;
+  displayedColumns: string[] = ['vesselTypeName','Action'];
+  dataSource = new MatTableDataSource<VesselTypes>;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngOnInit(): void {
-     this.getAllVessel();
-  }
+  ngOnInit(): void {this.getAllVesselType();}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -45,25 +44,68 @@ export class VesselComponent implements OnInit {
     }
   }
 
-  VesselDialog() {
+
+  VesselTypeDialog() {
     if(this.mobileMedia1.matches) {
-      const dialogRef = this.dialog.open(VesseltypeComponent, {
+      const dialogRef = this.dialog.open(VesselTypeDialogComponent, {
         disableClose: true,
         width: '100%',
         height: '45%'
     }).afterClosed().subscribe(val => {
         if (val === 'save') {
-          this.getAllVessel();
+          this.getAllVesselType();
         }})
       } else {
-      const dialogRef = this.dialog.open(VesseltypeComponent, {
+      const dialogRef = this.dialog.open(VesselTypeDialogComponent, {
         disableClose: true,
         width: '35%',
         height: '43%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
-        this.getAllVessel();
+        this.getAllVesselType();
       }})}
+  }
+
+  
+
+  openEdit(row : any) {
+    const dialogRef = this.dialog.open(VesselTypeDialogComponent, {
+      disableClose: true,
+      width: '30%',
+      height: '43%',
+      data:row
+    }).afterClosed().subscribe(val => {
+      if (val === 'update') {
+        this.getAllVesselType();
+      }
+  })
+  }
+
+  getAllVesselType() {
+    this.service.getAllVesselType()
+      .subscribe({
+        next:(res)=> {
+          this.dataSource = new MatTableDataSource(res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        },
+        error: ()=> {
+          this.tostr.info('No record found in this page!','Info');
+        }
+      })
+  }
+
+  deleteVesselType(id : number) {
+    this.service.deleteVesselType(id)
+    .subscribe({
+      next:(res) => {
+        this.tostr.error('This record has been Deleted!','Delete');
+        this.getAllVesselType();
+      },
+      error: ()=> {
+        this.tostr.info('Error while Deleting this record!','Cancelled');
+      }
+    })
   }
 
   openDelete(id : number) {
@@ -77,53 +119,12 @@ export class VesselComponent implements OnInit {
         allowOutsideClick: false
     }).then((result) => {
         if (result.value) {
-          this.deleteVessel(id);
+          this.deleteVesselType(id);
         }
         else if (result.dismiss === Swal.DismissReason.cancel) {
           this.tostr.info('This record is safe','Cancelled');
-        }
-    })
-  }
+        }});}
 
-  openEdit(row : any) {
-    const dialogRef = this.dialog.open(VesseltypeComponent, {
-      disableClose: true,
-      width: '30%',
-      height: '43%',
-      data:row
-    }).afterClosed().subscribe(val => {
-      if (val === 'update') {
-        this.getAllVessel();
-      }
-  })
-  }
-
-  getAllVessel() {
-    this.service.getAllVessel()
-      .subscribe({
-        next:(res)=> {
-          this.dataSource = new MatTableDataSource(res);
-          this.dataSource.paginator = this.paginator;
-          this.dataSource.sort = this.sort;
-        },
-        error: ()=> {
-          this.tostr.info('No record found in this page!','Info');
-        }
-      })
-  }
-
-  deleteVessel(id : number) {
-    this.service.deleteVessel(id)
-    .subscribe({
-      next:(res) => {
-        this.tostr.error('This record has been Deleted!','Delete');
-        this.getAllVessel();
-      },
-      error: ()=> {
-        this.tostr.info('Error while Deleting this record!','Cancelled');
-      }
-    })
-  }
 
 
 }

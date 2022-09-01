@@ -5,12 +5,12 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { VesselDetailService } from 'src/app/shared/vessel/vessel-detail.service';
-import { Vessel } from './vesseltype.model';
+import { Vessel } from './vesselDialog.model';
 
 @Component({
   selector: 'app-vesseltype',
-  templateUrl: './vesseltype.component.html',
-  styleUrls: ['./vesseltype.component.scss']
+  templateUrl: './vesselDialog.component.html',
+  styleUrls: ['./vesselDialog.component.scss']
 })
 export class VesseltypeComponent implements OnInit {
 
@@ -47,11 +47,11 @@ export class VesseltypeComponent implements OnInit {
         this.tostr.error('Please input your prefered vessel!','Empty fields');
       }
       } else {
-        this.updateVesselType();
+        this.updateVessel();
     }
   }
 
-  updateVesselType() {
+  updateVessel() {
     this.service.putVesselType(this.editData.id,this.addVesselRequest)
     .subscribe({
       next:(res)=> {

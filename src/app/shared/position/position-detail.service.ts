@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpInterceptor } from '@angular/common/http';
 import { Observable, ShareConfig } from 'rxjs';
-import { Position } from 'src/app/components/positiontype/positiontype.model';
+import { Position } from 'src/app/components/positionDialog/positiontype.model';
 import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({

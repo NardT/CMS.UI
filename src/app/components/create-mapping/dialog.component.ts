@@ -9,11 +9,13 @@ import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementmappingDetailService } from 'src/app/shared/requirementmapping/requirementmapping-detail.service';
-import { Position } from '../positiontype/positiontype.model';
-import { Vessel } from '../vesseltype/vesseltype.model';
+import { Position } from '../positionDialog/positiontype.model';
+import { Vessel } from '../vesselDialog/vesselDialog.model';
 import { RequirementType } from '../requirementstype/requirementType.model';
 import { Requirement } from '../requirements-dialog/requirements.model';
 import { RequirementMapping } from './requirementmapping.model';
+import { VesselTypes } from '../vesselTypeDialog/vesselType.Model';
+import { RequirementsMappings } from './requirementsmappings.model';
 
 @Component({
   selector: 'app-dialog',
@@ -22,13 +24,15 @@ import { RequirementMapping } from './requirementmapping.model';
 })
 export class DialogComponent implements OnInit {
 
-    addRequirementMappingRequest: RequirementMapping = {RequirementMappingPositionName: '',RequirementMappingRequirement: '',RequirementMappingRequirementType: '',RequirementMappingVesselName: '',RequirementMappingValidityDate: new Date(Date.now())}
     actionBtn : string = "Save"
     mobileMedia1: any = window.matchMedia("(max-width:600px)")
     positionList: any;
     vesselList: any;
     requirements: any;
     requirementtype: any;
+    editposition: any;
+    addRequirementMappingRequest: RequirementsMappings = {PositionId: '',RequirementId: '',RequirementTypeId: '',VesselTypeId: '',ValidityDate: new Date()}
+    EditRequirementMappingRequest: RequirementMapping = {positionName: '', requirementName: '', requirementTypeName: '', vesselTypeName: '',validityDate: new Date()}
 
     constructor(private formBuilder : FormBuilder,
     public dialogRef: MatDialogRef<DialogComponent>,
@@ -39,20 +43,23 @@ export class DialogComponent implements OnInit {
 
     ngOnInit(): void {
       if(this.editData) {
+        console.log(this.editData);
         this.actionBtn = "Update";
-        this.addRequirementMappingRequest['Id'] = (this.editData.id);
-        this.addRequirementMappingRequest['RequirementMappingPositionName'] = (this.editData.RequirementMappingPositionName);
-        this.addRequirementMappingRequest['RequirementMappingRequirement'] = (this.editData.RequirementMappingRequirement);
-        this.addRequirementMappingRequest['RequirementMappingRequirementType'] = (this.editData.RequirementMappingRequirementType);
-        this.addRequirementMappingRequest['RequirementMappingVesselName'] = (this.editData.RequirementMappingVesselName);
-        this.addRequirementMappingRequest['RequirementMappingValidityDate'] = (this.editData.RequirementMappingValidityDate);
-      }
+        this.EditRequirementMappingRequest['id'] = (this.editData.id);
+        this.EditRequirementMappingRequest['positionName'] = (this.editData.positionName);
+        this.EditRequirementMappingRequest['requirementName'] = (this.editData.requirementName);
+        this.EditRequirementMappingRequest['requirementTypeName'] = (this.editData.requirementTypeName);
+        this.EditRequirementMappingRequest['vesselTypeName'] = (this.editData.vesselTypeName);
+        this.EditRequirementMappingRequest['validityDate'] = (this.editData.validityDate);
+        
+       }
+
 
       this.service.getAllPosition().subscribe((data:Position[])=> {
-        this.positionList = data;
+          this.positionList = data;
       });
 
-      this.service.getAllVessel().subscribe((data:Vessel[])=> {
+      this.service.getAllVessel().subscribe((data:VesselTypes[])=> {
         this.vesselList = data;
       });
 
@@ -63,50 +70,50 @@ export class DialogComponent implements OnInit {
       this.service.getAllRequirements().subscribe((data:Requirement[])=> {
         this.requirements = data;
       });
+
+      this.dialogRef.keydownEvents().subscribe(event => {
+        if (event.key === "Escape") {
+            this.onCancel();
+        }});
     }
 
     ChangePosition(value) {
-      this.addRequirementMappingRequest.RequirementMappingPositionName = value;
+      this.addRequirementMappingRequest.PositionId = value;
     }
 
     ChangeRequirement(value) {
-      this.addRequirementMappingRequest.RequirementMappingRequirement = value;
+      this.addRequirementMappingRequest.RequirementId = value;
     }
 
     ChangeRequirementType(value) {
-      this.addRequirementMappingRequest.RequirementMappingRequirementType = value;
+      this.addRequirementMappingRequest.RequirementTypeId = value;
     }
 
     ChangeVessel(value) {
-      this.addRequirementMappingRequest.RequirementMappingVesselName = value;
+      this.addRequirementMappingRequest.VesselTypeId = value;
     }
 
-    public onDate(event): void {
-      console.log(event);
-      this.addRequirementMappingRequest.RequirementMappingValidityDate = event;
+    ChangeDate(value) {
+      this.addRequirementMappingRequest.ValidityDate = value;
     }
-
 
     AddRequirementMapping() {
       if(!this.editData) {
-        // if(this.addRequirementMappingRequest.MappingPosition.length != 0
-        //   && this.addRequirementMappingRequest.MappingRequirement.length != 0
-        //   && this.addRequirementMappingRequest.MappingVessel.length != 0
-        //   && this.addRequirementMappingRequest.MappingRequirementType.length != 0) {
+        if(this.addRequirementMappingRequest.PositionId.length != 0) {
           this.service.postRequirementMapping(this.addRequirementMappingRequest)
           .subscribe({
             next: (mapping) => {
-              console.log(this.addRequirementMappingRequest);
               this.tostr.success('This record has been Saved!','Success');
-              this.dialogRef.close('save');      
+              this.dialogRef.close('save');  
             },
-            error:()=> {
+            error:(err)=> {
+              console.log(err);
               this.tostr.error('This data is Already Exists!','Duplicate');
             }
           });
-        // } else {
-        //   this.tostr.error('Please input your prefered vessel!','Empty fields');
-        // }
+        } else {
+          this.tostr.error('Please input your prefered vessel!','Empty fields');
+        }
         } else {
           this.updateRequirementmapping();
       }
@@ -123,6 +130,12 @@ export class DialogComponent implements OnInit {
         this.tostr.error('Error while updating the record!','Cancelled');
       }
     })}
+
+    onCancel(): void {
+      this.editData.cancel = true;
+      this.dialogRef.close(this.editData);
+  }
+
     
 
 }

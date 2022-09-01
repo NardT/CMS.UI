@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PositiontypeComponent } from './positiontype.component';
+import { VesseltypeComponent } from './vesselDialog.component';
 
-describe('PositiontypeComponent', () => {
-  let component: PositiontypeComponent;
-  let fixture: ComponentFixture<PositiontypeComponent>;
+describe('VesseltypeComponent', () => {
+  let component: VesseltypeComponent;
+  let fixture: ComponentFixture<VesseltypeComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PositiontypeComponent ]
+      declarations: [ VesseltypeComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PositiontypeComponent);
+    fixture = TestBed.createComponent(VesseltypeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

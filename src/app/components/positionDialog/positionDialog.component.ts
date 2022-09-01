@@ -10,8 +10,8 @@ import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-tran
 
 @Component({
   selector: 'app-positiontype',
-  templateUrl: './positiontype.component.html',
-  styleUrls: ['./positiontype.component.scss']
+  templateUrl: './positionDialog.component.html',
+  styleUrls: ['./positionDialog.component.scss']
 })
 export class PositiontypeComponent implements OnInit {
 

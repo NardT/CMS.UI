@@ -7,8 +7,8 @@ import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { PositionDetailService } from 'src/app/shared/position/position-detail.service'
-import { PositiontypeComponent } from '../positiontype/positiontype.component';
-import { Position } from '../positiontype/positiontype.model';
+import { PositiontypeComponent } from '../positionDialog/positionDialog.component';
+import { Position } from '../positionDialog/positiontype.model';
 
 @Component({
   selector: 'app-position',

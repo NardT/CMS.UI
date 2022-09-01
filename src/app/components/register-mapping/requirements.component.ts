@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild  } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject  } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
-import { MatDialog} from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA,MatDialogRef} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
@@ -9,6 +9,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { DialogComponent } from '../create-mapping/dialog.component';
 import { RequirementmappingDetailService } from 'src/app/shared/requirementmapping/requirementmapping-detail.service';
 import { RequirementMapping } from '../create-mapping/requirementmapping.model';
+import { RequirementsMapping } from '../requirements-mapping/requirementsmapping.component';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-requirements',
@@ -18,7 +20,7 @@ import { RequirementMapping } from '../create-mapping/requirementmapping.model';
 
 export class RequirementsComponent {
   constructor(
-      public dialog: MatDialog,
+      public dialog : MatDialog,
       private tostr : ToastrService,
       private spinner: NgxSpinnerService,
       public service: RequirementmappingDetailService) {}
@@ -27,7 +29,13 @@ export class RequirementsComponent {
   mobileMedia2: any = window.matchMedia("(max-width:1180px)");
   mobileMedia3: any = window.matchMedia("(max-width:667px)");
 
-  displayedColumns: string[] = ['RequirementMappingPositionName', 'RequirementMappingRequirement','RequirementMappingRequirementType', 'RequirementMappingVesselName', 'RequirementMappingValidityDate', 'action'];
+  JSONData: any;
+  currPages = 0;
+  totalPage = 0;
+  totalCount = 0;
+  pageSize = 0;
+
+  displayedColumns: string[] = ['positionName', 'requirementName','requirementTypeName', 'vesselTypeName', 'validityDate', 'action'];
   dataSource = new MatTableDataSource<RequirementMapping>;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -38,7 +46,7 @@ export class RequirementsComponent {
     setTimeout(() => {
       this.spinner.hide();});
 
-    this.getAllRequirement();
+      this.getRequirementMapping();
   }
 
   applyFilter(event: Event) {
@@ -58,7 +66,7 @@ export class RequirementsComponent {
         height: '80%'
     }).afterClosed().subscribe(val => {
         if (val === 'save') {
-          this.getAllRequirement();
+          this.getRequirementMapping();
         }});
       } else if (this.mobileMedia2.matches) {
         const dialogRef = this.dialog.open(DialogComponent, {
@@ -80,17 +88,19 @@ export class RequirementsComponent {
         height: '70%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
-        this.getAllRequirement();
+        this.getRequirementMapping();
       }})}
   }
 
-  getAllRequirement() {
+  getRequirementMapping() {
       this.service.getAllRequirementMapping()
       .subscribe({
         next:(res) => {
-          console.log(res);
-          this.dataSource = new MatTableDataSource(res);
-          this.dataSource.paginator = this.paginator;
+          this.JSONData = res;
+          this.totalPage = this.JSONData.totalPages;
+          this.totalCount = this.JSONData.totalCount;
+          this.pageSize = this.JSONData.pageSize;
+          this.dataSource = new MatTableDataSource(this.JSONData.data);
           this.dataSource.sort = this.sort;
         },
         error: () => {
@@ -104,10 +114,10 @@ export class RequirementsComponent {
         disableClose: true,
         width: '100%',
         height: '70%',
-        data:row
+        data: row
       }).afterClosed().subscribe(val => {
         if (val === 'update') {
-          this.getAllRequirement();
+          this.getRequirementMapping();
         }
     })
     }
@@ -136,7 +146,7 @@ export class RequirementsComponent {
       .subscribe({
         next:(res) => {
           this.tostr.error('This record has been Deleted!','Delete');
-          this.getAllRequirement();
+          this.getRequirementMapping();
         },
         error: ()=> {
           this.tostr.warning('Error while Deleting this record!','Cancelled');

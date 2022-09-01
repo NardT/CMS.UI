@@ -5,7 +5,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
-import { VesseltypeComponent } from '../vesseltype/vesseltype.component';
+import { VesseltypeComponent } from '../vesselDialog/vesselDialog.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementsDialogComponent } from '../requirements-dialog/requirements-dialog.component';
 import { RequirementsDetailService } from 'src/app/shared/requirements/requirements-detail.service';

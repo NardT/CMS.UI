@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Vessel } from 'src/app/components/vesseltype/vesseltype.model';
+import { Vessel } from 'src/app/components/vesselDialog/vesselDialog.model';
 import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({
