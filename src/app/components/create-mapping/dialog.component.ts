@@ -9,13 +9,13 @@ import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementmappingDetailService } from 'src/app/shared/requirementmapping/requirementmapping-detail.service';
-import { Position } from '../positionDialog/positiontype.model';
-import { Vessel } from '../vesselDialog/vesselDialog.model';
+import { Vessel } from '../../interfaces/model/vessel';
 import { RequirementType } from '../requirementstype/requirementType.model';
 import { Requirement } from '../requirements-dialog/requirements.model';
 import { RequirementMapping } from './requirementmapping.model';
-import { VesselTypes } from '../vesselTypeDialog/vesselType.Model';
+import { VesselTypes } from '../../interfaces/model/vesselType.';
 import { RequirementsMappings } from './requirementsmappings.model';
+import { Position } from 'src/app/interfaces/model/position';
 
 @Component({
   selector: 'app-dialog',
@@ -51,7 +51,7 @@ export class DialogComponent implements OnInit {
         this.EditRequirementMappingRequest['requirementTypeName'] = (this.editData.requirementTypeName);
         this.EditRequirementMappingRequest['vesselTypeName'] = (this.editData.vesselTypeName);
         this.EditRequirementMappingRequest['validityDate'] = (this.editData.validityDate);
-        
+      
        }
 
 

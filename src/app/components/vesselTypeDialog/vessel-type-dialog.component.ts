@@ -6,7 +6,7 @@ import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { PositionDetailService } from 'src/app/shared/position/position-detail.service';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
-import { VesselTypes } from './vesselType.Model';
+import { VesselTypes } from '../../interfaces/model/vesselType.';
 import { VesseltypeDetailService } from 'src/app/shared/vesseltype/vesseltype-detail.service';
 
 

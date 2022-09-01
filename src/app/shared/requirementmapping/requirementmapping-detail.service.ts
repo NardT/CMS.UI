@@ -2,14 +2,14 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequirementMapping } from 'src/app/components/create-mapping/requirementmapping.model';
-import { Position } from 'src/app/components/positionDialog/positiontype.model';
 import { Requirement } from 'src/app/components/requirements-dialog/requirements.model';
 import { RequirementType } from 'src/app/components/requirementstype/requirementType.model';
-import { Vessel } from 'src/app/components/vesselDialog/vesselDialog.model';
+import { Vessel } from 'src/app/interfaces/model/vessel';
 import { RequirementDetailService } from '../requirementType/requirement-detail.service';
 import { Appconfig } from 'src/app/config/app-config';
-import { VesselTypes } from 'src/app/components/vesselTypeDialog/vesselType.Model';
+import { VesselTypes } from 'src/app/interfaces/model/vesselType.';
 import { RequirementsMappings } from 'src/app/components/create-mapping/requirementsmappings.model';
+import { Position } from 'src/app/interfaces/model/position';
 
 
 @Injectable({
@@ -20,7 +20,6 @@ export class RequirementmappingDetailService {
   constructor(private cnfgsrvc: Appconfig,private http: HttpClient) {}
 
   _BaseURL = this.cnfgsrvc.BaseUrl;
-  _Search = this.cnfgsrvc.search;
   _endPointRequirementMapping = this.cnfgsrvc.requirementMappingEndPoint;
   _endPointPosition = this.cnfgsrvc.positionEndPoint;
   _endPintRequirements = this.cnfgsrvc.requirementEndPoint;
@@ -28,7 +27,7 @@ export class RequirementmappingDetailService {
   _endPintVesselType = this.cnfgsrvc.vesselTypeEndPoint;
 
   getAllRequirementMapping(): Observable<RequirementMapping[]> {
-    return this.http.get<RequirementMapping[]>(this._BaseURL + this._endPointRequirementMapping + this._Search);
+    return this.http.get<RequirementMapping[]>(this._BaseURL + this._endPointRequirementMapping);
   }
 
   postRequirementMapping(addRequirementMappingRequest: RequirementsMappings): Observable<RequirementsMappings> {

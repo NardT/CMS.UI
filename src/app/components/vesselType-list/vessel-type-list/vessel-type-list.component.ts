@@ -7,7 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { VesseltypeDetailService } from 'src/app/shared/vesseltype/vesseltype-detail.service';
-import { VesselTypes } from '../../vesselTypeDialog/vesselType.Model';
+import { VesselTypes } from '../../../interfaces/model/vesselType.';
 import { VesselTypeDialogComponent } from '../../vesselTypeDialog/vessel-type-dialog.component';
 
 
