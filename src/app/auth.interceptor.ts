@@ -1,4 +1,4 @@
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -6,45 +6,20 @@ import {
   HttpInterceptor,
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import { LoginDetailService } from './shared/login/login-detail.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private inject: Injector) {}
+  constructor() {}
 
-  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    let authservice = this.inject.get(LoginDetailService);
-    let authreq = request;
-
-    authreq = this.AddTokenHeader(request,authservice.GetToken());
-    return next.handle(authreq).pipe(
-      catchError(errordata=> {
-        if(errordata.status === 401) {
-            // need to implement logout
-            authservice.LogOut();
-            //refresh token logic
-          
-        }
-        return throwError(errordata);
-      })
-    );
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+    
     request = request.clone({
       headers: request.headers.set('tenant','CMS')
     })
     
     return next.handle(request);
   }
-
-
-  AddTokenHeader(request: HttpRequest<any>,token: any) {
-    return request.clone({headers: request.headers.set('Authorization','bearer '+token)});
-  }
-
-  HandleRefreshToken() {
-
-  }
-
 }
 

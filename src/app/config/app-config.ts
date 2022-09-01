@@ -9,6 +9,4 @@ export abstract class Appconfig {
     vesselEndPoint: string;
     vesselTypeEndPoint: string;
     requirementMappingEndPoint: string;
-    homeEndPoint: string;
-    search: string;
 }

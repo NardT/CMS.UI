@@ -26,8 +26,6 @@ export class ConfigService extends Appconfig {
             this.vesselEndPoint = data!.vesselEndPoint;
             this.vesselTypeEndPoint = data!.vesselTypeEndPoint;
             this.requirementMappingEndPoint = data!.requirementMappingEndPoint;
-            this.homeEndPoint = data!.homeEndPoint;
-            this.search = data!.search;
         })
         .catch(() => {
             console.error('could not load configuration');

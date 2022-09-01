@@ -21,7 +21,7 @@ import { VesselComponent } from '../vessel/vessel.component';
 import { VesseltypeComponent } from '../vesselDialog/vesselDialog.component';
 import { DialogComponent } from '../create-mapping/dialog.component';
 import { PositionComponent } from '../position/position.component';
-import { PositiontypeComponent } from '../positionDialog/positionDialog.component';
+import { PositionDialogComponent } from '../positionDialog/positionDialog.component';
 import { RegisterschedulingComponent } from '../corner-stone-capstone-register/registerscheduling.component';
 import { RequirementstypeComponent } from '../requirementstype/requirementstype.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -49,8 +49,6 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import { AuthService } from 'src/app/shared/Authentication/auth.service';
 import { VesselTypeListComponent } from '../vesselType-list/vessel-type-list/vessel-type-list.component';
-import { AuthGuard } from 'src/app/shared/Authentication/auth.guard';
-
 
 
 const routes:Routes=[
@@ -60,7 +58,7 @@ const routes:Routes=[
     children: [
       {
         path: "calendar",
-        component: CalendarComponent,canActivate:[AuthGuard]
+        component: CalendarComponent
       }
     ]
   },
@@ -70,7 +68,7 @@ const routes:Routes=[
     children: [
       {
         path: "home",
-        component: HomeComponent,canActivate:[AuthGuard]
+        component: HomeComponent
       }
     ]
   },
@@ -80,7 +78,7 @@ const routes:Routes=[
     children: [
       {
         path: "trainingandpromotions",
-        component: RequirementsComponent,canActivate:[AuthGuard]
+        component: RequirementsComponent
       },
       {
         path: "dialog",
@@ -94,11 +92,11 @@ const routes:Routes=[
     children: [
       {
         path: "schedule",
-        component: SchedulingComponent,canActivate:[AuthGuard]
+        component: SchedulingComponent
       },
       {
         path: 'ViewParticipants',
-        component: ViewparticipantsComponent,canActivate:[AuthGuard]
+        component: ViewparticipantsComponent
       }
     ]
   },
@@ -108,7 +106,7 @@ const routes:Routes=[
     children: [
       {
         path: "reports",
-        component: ReportsComponent,canActivate:[AuthGuard]
+        component: ReportsComponent
       }
     ]
   },
@@ -118,11 +116,11 @@ const routes:Routes=[
     children: [
       {
         path: "requirementtype",
-        component: RequirementComponent,canActivate:[AuthGuard]
+        component: RequirementComponent
       },
       {
         path: 'requirementsType',
-        component: RequirementstypeComponent,canActivate:[AuthGuard]
+        component: RequirementstypeComponent
       }
     ]
   },
@@ -132,11 +130,11 @@ const routes:Routes=[
     children: [
       {
         path: "position",
-        component: PositionComponent,canActivate:[AuthGuard]
+        component: PositionComponent
       },
       {
         path: 'positiontype',
-        component: PositiontypeComponent,canActivate:[AuthGuard]
+        component: PositionDialogComponent
       }
     ]
   },
@@ -146,11 +144,11 @@ const routes:Routes=[
     children: [
       {
         path: "vessel",
-        component: VesselComponent,canActivate:[AuthGuard]
+        component: VesselComponent
       },
       {
         path: 'vesseltype',
-        component: VesseltypeComponent,canActivate:[AuthGuard]
+        component: VesseltypeComponent
       }
     ]
   },
@@ -160,7 +158,7 @@ const routes:Routes=[
     children: [
       {
         path: "requirements-mapping",
-        component: RequirementsmappingComponent,canActivate:[AuthGuard]
+        component: RequirementsmappingComponent
       }
     ]
   },
@@ -171,7 +169,7 @@ const routes:Routes=[
       {
         path: "corner-and-capstone",
         // component: CornerCapstoneListComponent
-       component: RegisterschedulingComponent,canActivate:[AuthGuard]
+       component: RegisterschedulingComponent
       }
     ]
   },
@@ -181,7 +179,7 @@ const routes:Routes=[
     children: [
       {
         path: "corner-and-capstone-register",
-        component: CornerCapstoneListComponent,canActivate:[AuthGuard]
+        component: CornerCapstoneListComponent
       }
     ]
   },
@@ -191,7 +189,7 @@ const routes:Routes=[
     children: [
       {
         path: "requirement-type-list",
-        component: RequirementComponent,canActivate:[AuthGuard]
+        component: RequirementComponent
       }
     ]
   },
@@ -201,7 +199,7 @@ const routes:Routes=[
     children: [
       {
         path: "register-mapping",
-        component: RequirementsComponent,canActivate:[AuthGuard]
+        component: RequirementsComponent
       }
     ]
   },
@@ -211,7 +209,7 @@ const routes:Routes=[
     children: [
       {
         path: "requirements",
-        component: RequirementMatrixComponent,canActivate:[AuthGuard]
+        component: RequirementMatrixComponent
       }
     ]
   },
@@ -221,7 +219,7 @@ const routes:Routes=[
     children: [
       {
         path: "vesselType",
-        component: VesselTypeListComponent,canActivate:[AuthGuard]
+        component: VesselTypeListComponent
       }
     ]
   }

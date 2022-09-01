@@ -40,7 +40,7 @@ import { RequirementstypeComponent } from './components/requirementstype/require
 import { VesselComponent } from './components/vessel/vessel.component';
 import { VesseltypeComponent } from './components/vesselDialog/vesselDialog.component';
 import { PositionComponent } from './components/position/position.component';
-import { PositiontypeComponent } from './components/positionDialog/positionDialog.component';
+import { PositionDialogComponent } from './components/positionDialog/positionDialog.component';
 import { RegisterschedulingComponent } from './components/corner-stone-capstone-register/registerscheduling.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RequirementsmappingComponent } from './components/requirements-mapping/requirementsmapping.component';
@@ -70,7 +70,6 @@ import { config } from 'rxjs';
 import { Appconfig } from './config/app-config';
 import { VesselTypeListComponent } from './components/vesselType-list/vessel-type-list/vessel-type-list.component';
 import { VesselTypeDialogComponent } from './components/vesselTypeDialog/vessel-type-dialog.component';
-import { AuthGuard } from './shared/Authentication/auth.guard';
 
 
 FullCalendarModule.registerPlugins([
@@ -98,7 +97,7 @@ export function initializerFn(configservice: ConfigService) {
     VesselComponent,
     VesseltypeComponent,
     PositionComponent,
-    PositiontypeComponent,
+    PositionDialogComponent,
     RegisterschedulingComponent,
     RequirementsmappingComponent,
     ViewparticipantsComponent,
@@ -113,7 +112,6 @@ export function initializerFn(configservice: ConfigService) {
     VesselTypeDialogComponent
   ],
   providers: [
-    AuthGuard,
     { provide:HTTP_INTERCEPTORS,useClass:AuthService,multi:true},
     { provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: { useUtc: true } },
     {
@@ -125,7 +123,7 @@ export function initializerFn(configservice: ConfigService) {
       useFactory: initializerFn,
       deps: [ConfigService],
       multi: true
-    },
+    }
   ],
   imports: [
     BrowserModule,

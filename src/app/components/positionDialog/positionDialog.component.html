@@ -3,10 +3,10 @@
  <mat-divider></mat-divider>
 <div mat-dialog-content class="form-body">
     <br>
-    <form #form="ngForm" (ngSubmit)="AddPosition()">
+    <form #form="ngForm" (ngSubmit)="addPosition()">
     <mat-form-field appearance="outline">
-        <mat-label>Position Type</mat-label>
-        <input matInput name="position" [(ngModel)]="addPositionRequest.positionName" autocomplete="off" maxlength="50" minlength="3" required="">
+        <mat-label>Position</mat-label>
+        <input matInput name="position" [(ngModel)]="model.positionName" autocomplete="off" maxlength="50" minlength="3" required="">
     </mat-form-field>
     <button mat-raised-button class="btnSave" type="submit" >{{actionBtn}}</button>
 </form>

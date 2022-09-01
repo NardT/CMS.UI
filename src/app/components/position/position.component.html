@@ -3,29 +3,41 @@
 <h1 class="Title">List of Position</h1>
 <mat-divider></mat-divider>
 <br>
+
 <mat-toolbar>
+  <!-- Search Input -->
   <mat-form-field appearance="standard" class="searchhere">
-    <mat-label>Search area</mat-label>
-    <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="Type here..." #input>
+    <mat-label>Search Position</mat-label>
+    <input id="search" matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="Type here..." #input>
   </mat-form-field>
+
   <button class="btnCreate" mat-raised-button (click)="openPositionDialog()">Create</button>
 </mat-toolbar>
- <div class="mat-elevation-z8">
-    <table mat-table [dataSource]="dataSource" matSort>
-        <ng-container matColumnDef="positionName">
-          <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
-          <td mat-cell *matCellDef="let row"> {{row.positionName}} </td> 
-          </ng-container>
-          <ng-container matColumnDef="action">
-            <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
-            <td mat-cell *matCellDef="let row"> 
-              <button class="btnEdit" mat-icon-button color="primary" (click)="openEdit(row)"><mat-icon>edit</mat-icon></button>
-              <button class="btnDelete" mat-icon-button color="warn" (click)="openDelete(row.id)"><mat-icon>delete</mat-icon></button> 
-            </td>
-          </ng-container>
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>        
- </table>
-    <mat-paginator [pageSizeOptions]="[3, 5, 10, 25, 100]" showFirstLastButtons aria-label="Select page of users"></mat-paginator>
-</div> 
+
+<div class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort (matSortChange)="sortData($event)">
+    <!-- PositionName Column -->
+    <ng-container matColumnDef="positionName">
+      <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Position </th>
+      <td mat-cell *matCellDef="let row"> {{row.positionName}} </td>
+    </ng-container>
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+      <td mat-cell *matCellDef="let row">
+        <button class="btnEdit" mat-icon-button color="primary" (click)="openEdit(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button class="btnDelete" mat-icon-button color="warn" (click)="openDelete(row.id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[3, 5, 10, 25, 100]" (page)="pageChanged($event)" showFirstLastButtons
+    aria-label="Select page of positions">
+  </mat-paginator>
+</div>
 <br><br><br><br>

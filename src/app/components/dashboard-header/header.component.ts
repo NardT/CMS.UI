@@ -1,5 +1,4 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,15 +7,9 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   isExpanded = true;
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {}
 
-  Logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("refreshToken");
-    localStorage.removeItem("refreshTokenExpiryTime");
-    this.router.navigate(['/login'])
-  }
 
 }

@@ -8,7 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { VesseltypeComponent } from '../vesselDialog/vesselDialog.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { VesselDetailService } from 'src/app/shared/vessel/vessel-detail.service';
-import { Vessel } from '../vesselDialog/vesselDialog.model';
+import { Vessel } from '../../interfaces/model/vessel';
 
 @Component({
   selector: 'app-vessel',

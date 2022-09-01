@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { VesselDetailService } from 'src/app/shared/vessel/vessel-detail.service';
-import { Vessel } from './vesselDialog.model';
+import { Vessel } from '../../interfaces/model/vessel';
 
 @Component({
   selector: 'app-vesseltype',

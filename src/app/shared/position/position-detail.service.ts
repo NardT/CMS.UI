@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpInterceptor } from '@angular/common/http';
 import { Observable, ShareConfig } from 'rxjs';
-import { Position } from 'src/app/components/positionDialog/positiontype.model';
 import { Appconfig } from 'src/app/config/app-config';
+import { Position } from 'src/app/interfaces/model/position';
 
 @Injectable({
   providedIn: 'root'
