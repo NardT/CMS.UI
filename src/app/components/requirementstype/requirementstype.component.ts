@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { RequirementDetailService } from 'src/app/shared/requirementType/requirement-detail.service';
-import { RequirementType } from './requirementType.model';
+import { RequirementType } from '../../interfaces/model/requirementType.model';
 
 @Component({
   selector: 'app-requirementstype',

@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { RequirementsDetailService } from 'src/app/shared/requirements/requirements-detail.service';
-import { Requirement } from './requirements.model';
+import { Requirement } from '../../interfaces/model/requirements.model';
 
 @Component({
   selector: 'app-requirements-dialog',

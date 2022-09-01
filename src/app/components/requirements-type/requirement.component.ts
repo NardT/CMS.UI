@@ -8,7 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { RequirementstypeComponent } from '../requirementstype/requirementstype.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementDetailService } from 'src/app/shared/requirementType/requirement-detail.service';
-import { RequirementType } from '../requirementstype/requirementType.model';
+import { RequirementType } from '../../interfaces/model/requirementType.model';
 
 
 @Component({

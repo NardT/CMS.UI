@@ -9,7 +9,7 @@ import { VesseltypeComponent } from '../vesselDialog/vesselDialog.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementsDialogComponent } from '../requirements-dialog/requirements-dialog.component';
 import { RequirementsDetailService } from 'src/app/shared/requirements/requirements-detail.service';
-import { Requirement } from '../requirements-dialog/requirements.model';
+import { Requirement } from '../../interfaces/model/requirements.model';
 
 @Component({
   selector: 'app-requirement-matrix',

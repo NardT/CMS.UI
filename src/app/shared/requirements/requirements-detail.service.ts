@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Requirement } from 'src/app/components/requirements-dialog/requirements.model';
+import { Requirement } from 'src/app/interfaces/model/requirements.model';
 import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({
