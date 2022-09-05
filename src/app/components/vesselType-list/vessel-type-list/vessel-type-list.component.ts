@@ -7,7 +7,7 @@ import { MatSort } from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { VesseltypeDetailService } from 'src/app/shared/vesseltype/vesseltype-detail.service';
-import { VesselTypes } from '../../../interfaces/model/vesselType.';
+import { VesselTypes } from '../../../interfaces/model/vesselType';
 import { VesselTypeDialogComponent } from '../../vesselTypeDialog/vessel-type-dialog.component';
 
 
@@ -44,6 +44,14 @@ export class VesselTypeListComponent implements OnInit {
     }
   }
 
+  RefreshButton() {
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 3000);
+    this.getAllVesselType();
+  }
 
   VesselTypeDialog() {
     if(this.mobileMedia1.matches) {
@@ -59,7 +67,7 @@ export class VesselTypeListComponent implements OnInit {
       const dialogRef = this.dialog.open(VesselTypeDialogComponent, {
         disableClose: true,
         width: '35%',
-        height: '43%'
+        height: '33%',
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllVesselType();
@@ -71,8 +79,8 @@ export class VesselTypeListComponent implements OnInit {
   openEdit(row : any) {
     const dialogRef = this.dialog.open(VesselTypeDialogComponent, {
       disableClose: true,
-      width: '30%',
-      height: '43%',
+      width: '35%',
+      height: '33%',
       data:row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {

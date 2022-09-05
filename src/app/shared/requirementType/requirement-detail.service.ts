@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RequirementType } from 'src/app/interfaces/model/requirementType.model';
+import { RequirementType } from 'src/app/interfaces/model/requirementType';
 import { Observable } from 'rxjs';
 import { Appconfig } from 'src/app/config/app-config';
 

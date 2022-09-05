@@ -1,11 +1,8 @@
 <ngx-spinner size="medium" color="#F18E16" type="ball-fussion" style="color:#fff;">LOADING</ngx-spinner>
-<mat-toolbar><h1 class="title">Calendar and Events</h1>
-<button class="btnCreate" mat-raised-button (click)="openScheduleDialog()">Create</button>
-</mat-toolbar>
-<mat-divider></mat-divider>
-<br>
+<button class="btnCreate" mat-raised-button (click)="openScheduleDialog()"><mat-icon>add</mat-icon>Create</button>
+<br><br>
 <full-calendar [options]="calendarOptions" class="fullCalendar"></full-calendar>
-<br><br><br><br><br>
+<br><br><br><br>
 
 
 

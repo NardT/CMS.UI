@@ -50,7 +50,6 @@ import { MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapte
 import { AuthService } from 'src/app/shared/Authentication/auth.service';
 import { VesselTypeListComponent } from '../vesselType-list/vessel-type-list/vessel-type-list.component';
 
-
 const routes:Routes=[
   {
     path: "",
@@ -198,7 +197,7 @@ const routes:Routes=[
     component: DashboardComponent,
     children: [
       {
-        path: "register-mapping",
+        path: "requirement-mapping",
         component: RequirementsComponent
       }
     ]
@@ -261,8 +260,7 @@ FullCalendarModule.registerPlugins([
     MatRadioModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    MatInputModule,
-    
+    MatInputModule
   ]
 })
 export class DashboardModule {}

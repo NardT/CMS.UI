@@ -1,6 +1,3 @@
-<span class="btnClose" mat-dialog-close>&times;</span>
-<h1 class="Title">Vessel Type</h1>
- <mat-divider></mat-divider>
 <div mat-dialog-content class="form-body">
     <br>
     <form #form="ngForm" (ngSubmit)="AddVesselType()">
@@ -8,6 +5,7 @@
         <mat-label>Vessel Type</mat-label>
         <input matInput name="vesselType" [(ngModel)]="addVesselTypeRequest.vesselTypeName" autocomplete="off" maxlength="50" minlength="3" required="">
     </mat-form-field>
-    <button mat-raised-button class="btnSave" type="submit" >{{actionBtn}}</button>
+    <button mat-raised-button class="btnSave" [disabled]="submitted" type="submit" >{{actionBtn}}</button>
+    <button mat-raised-button class="btnClose" mat-dialog-close>Close</button>
 </form>
 </div>

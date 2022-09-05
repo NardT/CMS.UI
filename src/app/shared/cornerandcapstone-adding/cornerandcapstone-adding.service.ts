@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { Training } from 'src/app/components/cornerandcapstone-dialog/training.model';
+import { Training } from 'src/app/interfaces/model/training';
 import { Appconfig } from 'src/app/config/app-config';
 
 @Injectable({

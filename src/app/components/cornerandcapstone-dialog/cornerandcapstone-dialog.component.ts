@@ -3,7 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { CornerandcapstoneAddingService } from 'src/app/shared/cornerandcapstone-adding/cornerandcapstone-adding.service';
-import { Training } from './training.model';
+import { Training } from '../../interfaces/model/training';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class CornerandcapstoneDialogComponent implements OnInit {
   addTrainingRequest: Training = {trainingName: ''} 
 
   actionBtn : string = "Save"
+  submitted: boolean = false;
   constructor(public dialogRef: MatDialogRef<CornerandcapstoneDialogComponent>,
   private tostr : ToastrService,private formBuilder : FormBuilder,
   @Inject(MAT_DIALOG_DATA) public editData : any,
@@ -32,16 +34,14 @@ export class CornerandcapstoneDialogComponent implements OnInit {
   AddCornerandCapstone() {
     if(!this.editData) {
       if(this.addTrainingRequest.trainingName.length != 0) {
+        this.submitted = true;
         this.service.postDetails(this.addTrainingRequest)
-        .subscribe({
-          next: (training) => {
-            this.tostr.success('This record has been Saved!','Success');
-            this.dialogRef.close('save');      
-          },
-          error:()=> {
-            this.tostr.error('This data is Already Exists!','Duplicate');
-          }
-        });
+        .pipe(finalize(() => {
+          this.submitted = false;}))
+          .subscribe(result => {
+                this.tostr.success('This record has been Saved!','Success');
+                this.dialogRef.close('save');     
+          });
       } else {
         this.tostr.error('Please input your prefered position!','Empty fields');
       }

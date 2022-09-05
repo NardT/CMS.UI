@@ -2,12 +2,12 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RequirementMapping } from 'src/app/components/create-mapping/requirementmapping.model';
-import { Requirement } from 'src/app/interfaces/model/requirements.model';
-import { RequirementType } from 'src/app/interfaces/model/requirementType.model';
+import { Requirement } from 'src/app/interfaces/model/requirements';
+import { RequirementType } from 'src/app/interfaces/model/requirementType';
 import { Vessel } from 'src/app/interfaces/model/vessel';
 import { RequirementDetailService } from '../requirementType/requirement-detail.service';
 import { Appconfig } from 'src/app/config/app-config';
-import { VesselTypes } from 'src/app/interfaces/model/vesselType.';
+import { VesselTypes } from 'src/app/interfaces/model/vesselType';
 import { RequirementsMappings } from 'src/app/components/create-mapping/requirementsmappings.model';
 import { Position } from 'src/app/interfaces/model/position';
 

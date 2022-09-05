@@ -6,8 +6,9 @@ import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { PositionDetailService } from 'src/app/shared/position/position-detail.service';
 import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
-import { VesselTypes } from '../../interfaces/model/vesselType.';
+import { VesselTypes } from '../../interfaces/model/vesselType';
 import { VesseltypeDetailService } from 'src/app/shared/vesseltype/vesseltype-detail.service';
+import { finalize } from 'rxjs';
 
 
 @Component({
@@ -20,6 +21,7 @@ export class VesselTypeDialogComponent implements OnInit {
 
   addVesselTypeRequest: VesselTypes = {vesselTypeName: ''}
   actionBtn = "Save"
+  submitted: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<VesselTypeDialogComponent>,
     private tostr : ToastrService,private formBuilder : FormBuilder,
@@ -43,16 +45,15 @@ export class VesselTypeDialogComponent implements OnInit {
   AddVesselType() {
     if(!this.editData) {
       if(this.addVesselTypeRequest.vesselTypeName.length != 0) {
+        this.submitted = true;
         this.service.postVesselTypes(this.addVesselTypeRequest)
-        .subscribe({
-          next: (vessel) => {
-            this.tostr.success('This record has been Saved!','Success');
-            this.dialogRef.close('save');      
-          },
-          error:()=> {
-            this.tostr.error('This data is Already Exists!','Duplicate');
-          }
-        });
+        .pipe(finalize(() => {
+          this.submitted = false;}))
+          .subscribe(result => {
+                this.tostr.success('This record has been Saved!','Success');
+                this.dialogRef.close('save');     
+          });
+
       } else {
         this.tostr.error('Please input your prefered vessel!','Empty fields');
       }

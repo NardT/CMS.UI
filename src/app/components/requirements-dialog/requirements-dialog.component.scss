@@ -10,10 +10,12 @@
 }
 
 .btnClose {
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    color: rgb(96, 92, 92);
+    background-color: #d69914;
+    color: #fff;
+    height: 44px;
+    width: 25%;
+    border-radius: 10px;
+    margin-left: 3px;
 }
 
 .mat-form-field {
@@ -24,9 +26,20 @@
 .btnSave {
     background-color: #229954;
     color: #fff;
-    height: 50px;
-    width: 100%;
-    border-radius:40px;
+    height: 44px;
+    width: 25%;
+    border-radius: 10px;
+    margin-left: 49%;
+}
+
+.btnSave:hover {
+    background-color: #51ee93;
+    color: #fff;
+}
+
+.btnClose:hover {
+    background-color: #f0bd4f;
+    color: #fff;
 }
 
 @media only screen and (max-width:600px) {

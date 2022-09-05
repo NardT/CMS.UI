@@ -8,7 +8,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import {MatTableDataSource} from '@angular/material/table';
 import { CornerandcapstoneDialogComponent } from '../cornerandcapstone-dialog/cornerandcapstone-dialog.component';
 import { CornerandcapstoneAddingService } from 'src/app/shared/cornerandcapstone-adding/cornerandcapstone-adding.service';
-import { Training } from '../cornerandcapstone-dialog/training.model';
+import { Training } from '../../interfaces/model/training';
 
 @Component({
   selector: 'app-corner-capstone-list',
@@ -39,6 +39,14 @@ export class CornerCapstoneListComponent implements OnInit {
     this.getAllDetails();
   }
 
+  RefreshButton() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 3000);
+    this.getAllDetails();
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
@@ -62,7 +70,7 @@ export class CornerCapstoneListComponent implements OnInit {
       const dialogRef = this.dialog.open(CornerandcapstoneDialogComponent, {
         disableClose: true,
         width: '35%',
-        height: '43%'
+        height: '33%',
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllDetails();
@@ -72,8 +80,8 @@ export class CornerCapstoneListComponent implements OnInit {
   openCornerEdit(row : any) {
     const dialogRef = this.dialog.open(CornerandcapstoneDialogComponent, {
       disableClose: true,
-      width: '30%',
-      height: '43%',
+      width: '35%',
+      height: '33%',
       data:row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {

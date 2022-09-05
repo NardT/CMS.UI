@@ -1,13 +1,11 @@
-<span class="btnClose" mat-dialog-close>&times;</span>
-<h1 class="Title">Corner and Capstone</h1>
-<mat-divider></mat-divider>
 <div mat-dialog-content class="form-body">
     <br>
     <form #form="ngForm" (ngSubmit)="AddCornerandCapstone()">
     <mat-form-field appearance="outline">
-        <mat-label>Corner and Capstone</mat-label>
+        <mat-label>Training</mat-label>
         <input matInput type="text" name="training" [(ngModel)]="addTrainingRequest.trainingName" autocomplete="off" maxlength="50" minlength="3" required>
     </mat-form-field>
-        <button mat-raised-button class="btnSave">{{actionBtn}}</button>
+        <button mat-raised-button [disabled]="submitted" class="btnSave">{{actionBtn}}</button>
+        <button mat-raised-button class="btnClose" mat-dialog-close>Close</button>
     </form>
 </div>

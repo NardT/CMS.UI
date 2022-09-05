@@ -1,14 +1,13 @@
 <ngx-spinner size="medium" color="#F18E16" type="ball-fussion" style="color:#fff;">LOADING</ngx-spinner>
-<br>
-<h1 class="Title">List of Requirement</h1>
-<mat-divider></mat-divider>
-<br>
 <mat-toolbar>
+  <button class="btnCreate" mat-raised-button (click)="RequirementsDialog()"><mat-icon>add</mat-icon>Create</button>
+  <button class="btnRefresh" mat-raised-button (click)="RefreshButton()"><mat-icon>refresh</mat-icon>Refresh</button>
   <mat-form-field appearance="standard" class="searchhere">
-    <mat-label>Search area</mat-label>
-    <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="Type here..." #input>
+    <span matPrefix>
+      <mat-icon matPrefix class="search">search</mat-icon>
+    </span>
+    <input matInput (keyup)="applyFilter($event)" autocomplete="off" placeholder="Search" #input>
   </mat-form-field>
-  <button class="btnCreate" mat-raised-button (click)="RequirementsDialog()">Create</button>
 </mat-toolbar>
  <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>
@@ -17,7 +16,7 @@
            <td mat-cell *matCellDef="let row"> {{row.requirementName}} </td> 
           </ng-container>
           <ng-container matColumnDef="Action">
-            <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header> Action </th>
+            <th class="THheader" mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let row"> 
               <button class="btnEdit" mat-icon-button color="primary" (click)="openRequirementsEdit(row)"><mat-icon>edit</mat-icon></button>
               <button class="btnDelete" mat-icon-button color="warn" (click)="openDeleteRequirements(row.id)"><mat-icon>delete</mat-icon></button> 

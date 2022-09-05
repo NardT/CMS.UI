@@ -58,6 +58,17 @@
   height: 95%;
 }
 
+.btnlogout {
+  margin-left: 80%;
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+  color:rgb(19, 199, 124);
+  width: 120px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+}
+
 @media screen and (max-width:600px) {
   .icon-logo {
     background-image: url('../Image/logo.png');

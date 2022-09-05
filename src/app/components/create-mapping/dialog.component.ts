@@ -10,10 +10,10 @@ import {MatTableDataSource} from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementmappingDetailService } from 'src/app/shared/requirementmapping/requirementmapping-detail.service';
 import { Vessel } from '../../interfaces/model/vessel';
-import { RequirementType } from '../../interfaces/model/requirementType.model';
-import { Requirement } from '../../interfaces/model/requirements.model';
+import { RequirementType } from '../../interfaces/model/requirementType';
+import { Requirement } from '../../interfaces/model/requirements';
 import { RequirementMapping } from './requirementmapping.model';
-import { VesselTypes } from '../../interfaces/model/vesselType.';
+import { VesselTypes } from '../../interfaces/model/vesselType';
 import { RequirementsMappings } from './requirementsmappings.model';
 import { Position } from 'src/app/interfaces/model/position';
 
@@ -51,9 +51,9 @@ export class DialogComponent implements OnInit {
         this.EditRequirementMappingRequest['requirementTypeName'] = (this.editData.requirementTypeName);
         this.EditRequirementMappingRequest['vesselTypeName'] = (this.editData.vesselTypeName);
         this.EditRequirementMappingRequest['validityDate'] = (this.editData.validityDate);
-      
-       }
+        
 
+       }
 
       this.service.getAllPosition().subscribe((data:Position[])=> {
           this.positionList = data;

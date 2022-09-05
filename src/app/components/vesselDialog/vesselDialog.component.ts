@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { VesselDetailService } from 'src/app/shared/vessel/vessel-detail.service';
 import { Vessel } from '../../interfaces/model/vessel';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-vesseltype',
@@ -16,6 +17,7 @@ export class VesseltypeComponent implements OnInit {
 
   addVesselRequest: Vessel = {vesselName: ''}
   actionBtn : string = "Save"
+  submitted: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<VesseltypeComponent>,
   private tostr : ToastrService,private formBuilder : FormBuilder,
@@ -33,16 +35,14 @@ export class VesseltypeComponent implements OnInit {
   AddVessel() {
     if(!this.editData) {
       if(this.addVesselRequest.vesselName.length != 0) {
+        this.submitted = true;
         this.service.postVessel(this.addVesselRequest)
-        .subscribe({
-          next: (vessel) => {
-            this.tostr.success('This record has been Saved!','Success');
-            this.dialogRef.close('save');      
-          },
-          error:()=> {
-            this.tostr.error('This data is Already Exists!','Duplicate');
-          }
-        });
+        .pipe(finalize(() => {
+          this.submitted = false;}))
+          .subscribe(result => {
+                this.tostr.success('This record has been Saved!','Success');
+                this.dialogRef.close('save');     
+          });
       } else {
         this.tostr.error('Please input your prefered vessel!','Empty fields');
       }

@@ -9,7 +9,7 @@ import { VesseltypeComponent } from '../vesselDialog/vesselDialog.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementsDialogComponent } from '../requirements-dialog/requirements-dialog.component';
 import { RequirementsDetailService } from 'src/app/shared/requirements/requirements-detail.service';
-import { Requirement } from '../../interfaces/model/requirements.model';
+import { Requirement } from '../../interfaces/model/requirements';
 
 @Component({
   selector: 'app-requirement-matrix',
@@ -46,6 +46,14 @@ export class RequirementMatrixComponent implements OnInit {
     }
   }
 
+  RefreshButton() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 3000);
+    this.getAllRequirement();
+  }
+
   RequirementsDialog() {
     if(this.mobileMedia1.matches) {
       const dialogRef = this.dialog.open(RequirementsDialogComponent, {
@@ -60,7 +68,7 @@ export class RequirementMatrixComponent implements OnInit {
       const dialogRef = this.dialog.open(RequirementsDialogComponent, {
         disableClose: true,
         width: '35%',
-        height: '43%'
+        height: '33%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllRequirement();
@@ -89,8 +97,8 @@ export class RequirementMatrixComponent implements OnInit {
   openRequirementsEdit(row : any) {
     const dialogRef = this.dialog.open(RequirementsDialogComponent, {
       disableClose: true,
-      width: '30%',
-      height: '43%',
+      width: '35%',
+      height: '33%',
       data:row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {

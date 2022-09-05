@@ -5,7 +5,8 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { RequirementsDetailService } from 'src/app/shared/requirements/requirements-detail.service';
-import { Requirement } from '../../interfaces/model/requirements.model';
+import { Requirement } from '../../interfaces/model/requirements';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-requirements-dialog',
@@ -15,6 +16,7 @@ import { Requirement } from '../../interfaces/model/requirements.model';
 export class RequirementsDialogComponent implements OnInit {
 
   addRequirementRequest: Requirement = {requirementName: ''}
+  submitted: boolean = false;
   actionBtn : string = "Save"
   constructor(public dialogRef: MatDialogRef<RequirementsDialogComponent>,
   private tostr : ToastrService,private formBuilder : FormBuilder,
@@ -29,26 +31,24 @@ export class RequirementsDialogComponent implements OnInit {
   }
 }
 
-  AddRequirements() {
-    if(!this.editData) {
-      if(this.addRequirementRequest.requirementName.length != 0) {
-        this.service.AddRequirement(this.addRequirementRequest)
-        .subscribe({
-          next: (requirement) => {
-            this.tostr.success('This record has been Saved!','Success');
-            this.dialogRef.close('save');      
-          },
-          error:()=> {
-            this.tostr.error('This data is Already Exists!','Duplicate');
-          }
-        });
-      } else {
-        this.tostr.error('Please input your prefered requirement!','Empty fields');
-      }
-      } else {
-        this.updateRequirements();
+AddRequirements(): void {
+  if(!this.editData) {
+    if(this.addRequirementRequest.requirementName.length != 0) {
+      this.submitted = true;
+      this.service.AddRequirement(this.addRequirementRequest)
+      .pipe(finalize(() => {
+        this.submitted = false;}))
+        .subscribe(result => {
+              this.tostr.success('This record has been Saved!','Success');
+              this.dialogRef.close('save');     
+        }),(error) => {
+          console.log(error)
+        };
     }
+  } else {
+    this.updateRequirements();
   }
+}
 
   updateRequirements() {
     this.service.updateRequirementType(this.editData.id,this.addRequirementRequest)

@@ -7,29 +7,47 @@
 .mat-list-item {
   padding-left: 15px;
   color:#525153;
+  font-size: 13px;
+  padding-bottom: 0;
+  margin-bottom: 0;
 }
 
 .icon {
-  margin-left: 5px;
+  margin-left: 10px;
+  color: #707070;
+}
+
+.title-start {
+  color: rgb(19, 208, 19);
+  font-weight: 50px;
+  margin-left: 12px;
+}
+
+.title-personal {
+  color: rgb(19, 208, 19);
+  font-weight: 50px;
+  margin-left: 12px;
+  margin-top: 8px;
 }
 
 .mat-list-item:hover {
-  background-color: #e68442;
+  background-color: #beffda;
   color:#fff;
   border-radius: 10px 10px;
 }
 
 .mat-sidenav p {
-  color: #fff;
+  color: rgb(82, 6, 6);
   font-weight: 1px;
   padding-left: 30px;
-  padding-top: 15px;
+  padding-top: 0px;
   font-family: 'Times New Roman', serif;
 }
 
 .mat-sidenav {
   background-color: #fcffff;
   user-select: none;
+  width: 220px;
   height: 100%;
 }
 
@@ -37,6 +55,7 @@
   height: auto;
   margin-left: 1px;
 }
+
 
 .mat-drawer-container {
   height: 100%;
@@ -47,11 +66,23 @@
 .main-content {
   height: auto;
   margin: 7px;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .full-width {
   width: 100%;
+  color: #707070;
+  margin-left: 5px;
+  margin-top: 0px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.title {
+  margin-top: 10px;
+  margin-left: 20px;
+  color: rgb(18, 171, 18);
+  font-size: 20px;
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .menu-button {
@@ -97,6 +128,8 @@
   color:#fff;
   border-radius: 10px 10px;
 }
+
+
 
 @media screen and (max-width:600px) {
 

@@ -4,10 +4,13 @@ import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 // import { PositionDetailService } from 'src/app/shared/position/position-detail.service';
+
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { Position } from './positiontype.model';
 import { Position } from 'src/app/interfaces/model/position';
 import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
 import { PositionService } from 'src/app/services/position.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-positiontype',
@@ -18,6 +21,7 @@ export class PositionDialogComponent implements OnInit {
 
   model: Position = { positionName: '', id:'' }
   actionBtn = "Save"
+  submitted: boolean = false;
 
   constructor(public dialogRef: MatDialogRef<PositionDialogComponent>,
     private tostr: ToastrService, private formBuilder: FormBuilder,
@@ -37,21 +41,15 @@ export class PositionDialogComponent implements OnInit {
   addPosition() {
     if (!this.editData) {
       if (this.model.positionName.length != 0) {
-        
+        this.submitted = true;
         this.service.add(this.model)
-          .subscribe({
-            next: (res) => {
-              this.tostr.success('This record has been Saved!', 'Success');
-              this.dialogRef.close('save');
-            },
-            error: (res) => {
-              console.log(res);
-              this.tostr.error('This data is Already Exists!', 'Duplicate');
-            }
-          });
-      } else {
-        this.tostr.error('Please input your prefered position!', 'Empty fields');
-      }
+        .pipe(finalize(() => {
+          this.submitted = false;}))
+          .subscribe(result => {
+                this.tostr.success('This record has been Saved!','Success');
+                this.dialogRef.close('save');     
+          });      
+    } 
     } else {
       this.updatePosition();
     }

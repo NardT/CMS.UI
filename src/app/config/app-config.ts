@@ -9,4 +9,12 @@ export abstract class Appconfig {
     vesselEndPoint: string;
     vesselTypeEndPoint: string;
     requirementMappingEndPoint: string;
+    TITLErequirementsType: string;
+    TITLErequirement: string;
+    TITLEposition: string;
+    TITLEvessel: string;
+    TITLEvesseltype: string;
+    TITLEcornerandcapstone: string;
+    TITLEcalendar: string;
+    TITLErequirementmapping: string;
 }

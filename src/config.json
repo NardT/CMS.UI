@@ -10,5 +10,14 @@
     "vesselTypeEndPoint": "vesseltype/",
     "requirementMappingEndPoint": "requirementmapping/",
     "homeEndPoint": "/home",
-    "search": "search/"
+    "search": "search/",
+
+    "TITLErequirementsType": "/requirementtype",
+    "TITLErequirement": "/requirements",
+    "TITLEposition": "/position",
+    "TITLEvessel": "/vessel",
+    "TITLEvesseltype": "/vesselType",
+    "TITLEcornerandcapstone": "/corner-and-capstone-register",
+    "TITLEcalendar": "/calendar",
+    "TITLErequirementmapping": "/requirement-mapping"
 }

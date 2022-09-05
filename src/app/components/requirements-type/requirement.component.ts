@@ -8,7 +8,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { RequirementstypeComponent } from '../requirementstype/requirementstype.component';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { RequirementDetailService } from 'src/app/shared/requirementType/requirement-detail.service';
-import { RequirementType } from '../../interfaces/model/requirementType.model';
+import { RequirementType } from '../../interfaces/model/requirementType';
 
 
 @Component({
@@ -41,7 +41,11 @@ export class RequirementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllRequirement();
+
+    
+
   }
+  
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -51,12 +55,20 @@ export class RequirementComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }}
 
+  RefreshButton() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 3000);
+    this.getAllRequirement();
+  }
+
   OpenRequirementDialog() {
     if(this.mobileMedia1.matches) {
       const dialogRef = this.dialog.open(RequirementstypeComponent, {
         disableClose: true,
         width: '100%',
-        height: '45%'
+        height: '40%'
     }).afterClosed().subscribe(val => {
         if (val === 'save') {
           this.getAllRequirement();
@@ -65,7 +77,7 @@ export class RequirementComponent implements OnInit {
       const dialogRef = this.dialog.open(RequirementstypeComponent, {
         disableClose: true,
         width: '35%',
-        height: '42%'
+        height: '33%'
     }).afterClosed().subscribe(val => {
       if (val === 'save') {
         this.getAllRequirement();
@@ -74,8 +86,8 @@ export class RequirementComponent implements OnInit {
   openRequirementEdit(row : any) {
     const dialogRef = this.dialog.open(RequirementstypeComponent, {
       disableClose: true,
-      width: '30%',
-      height: '43%',
+      width: '35%',
+      height: '33%',
       data:row
     }).afterClosed().subscribe(val => {
       if (val === 'update') {

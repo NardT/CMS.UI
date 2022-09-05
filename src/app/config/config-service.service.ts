@@ -26,6 +26,14 @@ export class ConfigService extends Appconfig {
             this.vesselEndPoint = data!.vesselEndPoint;
             this.vesselTypeEndPoint = data!.vesselTypeEndPoint;
             this.requirementMappingEndPoint = data!.requirementMappingEndPoint;
+            this.TITLErequirementsType = data!.TITLErequirementsType;
+            this.TITLErequirement = data!.TITLErequirement;
+            this.TITLEposition = data!.TITLEposition;
+            this.TITLEvessel = data!.TITLEvessel;
+            this.TITLEvesseltype = data!.TITLEvesseltype;
+            this.TITLEcornerandcapstone = data!.TITLEcornerandcapstone;
+            this.TITLEcalendar = data!.TITLEcalendar;
+            this.TITLErequirementmapping = data!.TITLErequirementmapping;
         })
         .catch(() => {
             console.error('could not load configuration');

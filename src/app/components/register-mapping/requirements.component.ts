@@ -49,6 +49,14 @@ export class RequirementsComponent {
       this.getRequirementMapping();
   }
 
+  RefreshButton() {
+    this.spinner.show();
+    setTimeout(() => {
+      this.spinner.hide();});
+
+      this.getRequirementMapping();
+  }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
